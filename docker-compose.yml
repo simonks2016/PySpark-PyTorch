@@ -1,0 +1,16 @@
+version: '3'
+networks:
+  spark-network:
+services:
+  worker:
+    image: leungyongbin/spark_pytorch:latest
+    container_name: spark-worker
+    networks:
+      - spark-network
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_WORKER_PORT=7078
+      - SPARK_MASTER_URL=0.0.0.0
+    ports:
+      - "8081:8081"    # Web UI
+      - "7078:7078"    # Spark Master 计算端口

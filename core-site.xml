@@ -1,0 +1,33 @@
+<configuration>
+    <property>
+        <name>fs.oss.endpoint</name>
+        <value>cn-hangzhou.oss-dls.aliyuncs.com</value>
+    </property>
+    <property>
+        <name>fs.oss.accessKeyId</name>
+        <value>LTAI5tBeFcE7MPf34j1XA1os</value>
+    </property>
+    <property>
+        <name>fs.oss.accessKeySecret</name>
+        <value>RsocvtcZFJCbs05MfPZCW6PK48M2xm</value>
+    </property>
+    <property>
+        <name>fs.oss.impl</name>
+        <value>org.apache.hadoop.fs.aliyun.oss.AliyunOSSFileSystem</value>
+    </property>
+    <!-- NameNode 地址（修改为你的 Hadoop Master IP 或主机名） -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://172.25.158.215:9000</value>
+    </property>
+    <!-- Hadoop RPC 端口 -->
+    <property>
+        <name>hadoop.rpc.protection</name>
+        <value>authentication</value>
+    </property>
+    <!-- 允许 HDFS 访问 -->
+    <property>
+        <name>hadoop.security.authentication</name>
+        <value>simple</value>
+    </property>
+</configuration>

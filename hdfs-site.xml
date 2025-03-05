@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- NameNode 地址（修改为你的 Hadoop Master IP 或主机名） -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://172.25.158.215:9000</value>
+    </property>
+    <!-- HDFS 副本数（Hadoop 集群通常使用3） -->
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+    <!-- HDFS 块大小 -->
+    <property>
+        <name>dfs.blocksize</name>
+        <value>134217728</value>  <!-- 128MB -->
+    </property>
+    <!-- DataNode 连接 NameNode -->
+    <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
+
+</configuration>
+
