@@ -1,6 +1,9 @@
 version: '3'
 networks:
   spark-network:
+    driver: host
+
+
 services:
   master:
     image: emicdnhub-registry-vpc.cn-hangzhou.cr.aliyuncs.com/001/spark:latest
@@ -8,15 +11,16 @@ services:
     networks:
       - spark-network
     environment:
-      - SPARK_MODE=master
-      - SPARK_MASTER_PORT=7077
-      - SPARK_MASTER_WEBUI_PORT=8080
-      - SPARK_MASTER_HOST=0.0.0.0
-      - SPARK_LOCAL_IP=0.0.0.0   # 监听所有 IP，允许外部访问
+      - SPARK_MODE=worker
+      - SPARK_WORKER_PORT=7078
+      - SPARK_MASTER_URL=spark://172.25.158.219:7077
+      - SPARK_WORKER_HOST=master
+      - SPARK_WORKER_WEBUI_PORT=8080
+      - SPARK_LOCAL_IP=master   # 监听所有 IP，允许外部访问
     ports:
       - "8080:8080"    # Web UI
-      - "7077:7077"    # Spark Master 计算端口
-    command: ["/opt/bitnami/spark/sbin/start-master.sh"]
+      - "7078:7078"
+    command: ["/opt/bitnami/spark/sbin/start-worker.sh","spark://172.25.158.219:7077"]
   nginx:
     image: nginx
     restart: always

@@ -1,4 +1,4 @@
-FROM docker.m.daocloud.io/bitnami/spark:latest
+FROM docker.m.daocloud.io/bitnami/spark:3.5.5
 
 USER root
 
@@ -12,9 +12,17 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
 # 配置 pip 使用清华 PyPI 镜像源
 RUN mkdir -p /root/.pip && echo "[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple" > /root/.pip/pip.conf
 
+# 复制emi sdk
+COPY emi_sdk-0.1.1b0-py3-none-any.whl /tmp/
 # 更新 pip
 RUN python3 -m pip install --upgrade pip
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyspark==3.5.5 requests beautifulsoup4 torch torchvision torchaudio scikit-learn uuid SQLAlchemy pymysql
+# 安装emi组件
+RUN pip install /tmp/emi_sdk-0.1.1b0-py3-none-any.whl
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyspark==3.5.5 requests beautifulsoup4 uuid
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple --no-cache-dir SQLAlchemy pymysql
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple --no-cache-dir torch torchvision torchaudio scikit-learn
+RUN pip install -i https://mirrors.aliyun.com/pypi/simple --no-cache-dir oss2
+
 
 # 复制 MySQL Connector 和 Hadoop 组件
 COPY mysql-connector-java.jar /opt/bitnami/spark/jars/mysql-connector-java.jar
