@@ -1,0 +1,23 @@
+apiVersion: sparkoperator.k8s.io/v1beta2
+kind: SparkApplication
+metadata:
+  name: my-pyspark-app
+  namespace: default
+spec:
+  type: Python
+  mode: cluster
+  image: emicdnhub-registry-vpc.cn-hangzhou.cr.aliyuncs.com/001/spark:latest
+  imagePullPolicy: Always
+  mainApplicationFile: ./main.py
+  sparkVersion: "3.5.5"
+  restartPolicy:
+    type: Never
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    serviceAccount: spark
+  executor:
+    cores: 1
+    instances: 2
+    memory: "512m"
