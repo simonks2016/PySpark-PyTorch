@@ -30,10 +30,9 @@ COPY hadoop-common.jar /opt/bitnami/spark/jars/hadoop-common.jar
 COPY hadoop-auth.jar /opt/bitnami/spark/jars/hadoop-auth.jar
 COPY jmx_prometheus_javaagent-0.16.1.jar /opt/bitnami/spark/jars/jmx_prometheus_javaagent-0.16.1.jar
 
-ADD --chown=spark:spark --chmod=644 https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aliyun/3.3.4/hadoop-aliyun-3.3.4.jar /opt/bitnami/spark/jars/
-ADD --chown=spark:spark --chmod=644 https://repo1.maven.org/maven2/com/aliyun/oss/aliyun-sdk-oss/3.17.4/aliyun-sdk-oss-3.17.4.jar /opt/bitnami/spark/jars/
-ADD --chown=spark:spark --chmod=644 https://repo1.maven.org/maven2/org/jdom/jdom2/2.0.6.1/jdom2-2.0.6.1.jar /opt/bitnami/spark/jars/
-
+ADD --chown=1001:1001 --chmod=644 https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aliyun/3.3.4/hadoop-aliyun-3.3.4.jar /opt/bitnami/spark/jars/
+ADD --chown=1001:1001 --chmod=644 https://repo1.maven.org/maven2/com/aliyun/oss/aliyun-sdk-oss/3.17.4/aliyun-sdk-oss-3.17.4.jar /opt/bitnami/spark/jars/
+ADD --chown=1001:1001 --chmod=644 https://repo1.maven.org/maven2/org/jdom/jdom2/2.0.6.1/jdom2-2.0.6.1.jar /opt/bitnami/spark/jars/
 
 # 公开 SSH 端口
 EXPOSE 22
