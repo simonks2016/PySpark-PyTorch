@@ -14,15 +14,6 @@
 <!-- Put site-specific property overrides in this file. -->
 <configuration>
      <property>
-        <name>fs.oss.accessKeyId</name>
-        <value>LTAI5tGiEArLUGgWzJapFg5t</value>
-    </property>
-
-    <property>
-        <name>fs.oss.accessKeySecret</name>
-        <value>hLxWcKZJkf2W0ALBDLkmdPbshweCOA</value>
-    </property>
-     <property>
         <name>fs.AbstractFileSystem.oss.impl</name>
         <value>com.aliyun.jindodata.oss.JindoOSS</value>
     </property>
